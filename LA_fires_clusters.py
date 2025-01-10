@@ -1,10 +1,18 @@
 import pandas as pd
 import folium
 from folium.plugins import MarkerCluster
+import requests
+from io import BytesIO
 
-# Загрузка и подготовка данных
-INPUT_FILE = r"https://github.com/Blinkinthemirrow/LA-fires-cluster-map/blob/main/LA_fires.xlsx"  # Укажите путь к вашему файлу
-fires_data = pd.read_excel(INPUT_FILE)
+# URL вашего файла на GitHub
+INPUT_FILE = "https://raw.githubusercontent.com/Blinkinthemirrow/LA-fires-cluster-map/main/LA_fires.xlsx"
+
+# Загрузка файла с GitHub
+response = requests.get(INPUT_FILE)
+response.raise_for_status()  # Проверяем, что файл успешно загружен
+
+# Чтение Excel-файла в pandas
+fires_data = pd.read_excel(BytesIO(response.content))
 
 # Оставляем нужные колонки
 fires_cleaned = fires_data[['incident_date_created', 'incident_longitude', 'incident_latitude']].copy()
