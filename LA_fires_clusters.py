@@ -3,7 +3,7 @@ import folium
 from folium.plugins import MarkerCluster
 
 # Загрузка и подготовка данных
-INPUT_FILE = r"C:\Users\Petercoldbeer\Desktop\LA_fires.xlsx"  # Укажите путь к вашему файлу
+INPUT_FILE = r"https://github.com/Blinkinthemirrow/LA-fires-cluster-map/blob/main/LA_fires.xlsx"  # Укажите путь к вашему файлу
 fires_data = pd.read_excel(INPUT_FILE)
 
 # Оставляем нужные колонки
